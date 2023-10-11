@@ -15,3 +15,8 @@ entity Task {=psl
   description String  
   isDone      Boolean @default(false)
 psl=}
+
+query getTasks {
+  fn: import { getTasks } from "@server/queries.js",
+  entities: [Task]
+}
