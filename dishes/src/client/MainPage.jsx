@@ -1,5 +1,6 @@
 import getTasks from '@wasp/queries/getTasks'
 import createTask from '@wasp/actions/createTask'
+import updateTask from '@wasp/actions/updateTask'
 import { useQuery } from '@wasp/queries'
 
 const MainPage = () => {
@@ -15,12 +16,25 @@ const MainPage = () => {
 }
 
 const Task = ({ task }) => {
-  return(
+  
+  const handleIsDoneChange = async (event) => {
+    try {
+      await updateTask({
+        id: task.id,
+        isDone: event.target.checked,
+      })
+    } catch (error) {
+      window.alert("Error while updating task: " + error.message)
+    }
+  }
+
+  return (
     <div>
-      <input type="checkbox" id={String(task.id)} checked={task.isDone} />
+      <input type="checkbox" id={String(task.id)} checked={task.isDone} onChange={handleIsDoneChange} />
       {task.description}
     </div>
   )
+
 }
 
 const TasksList = ({ tasks }) => {
