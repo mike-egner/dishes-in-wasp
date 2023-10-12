@@ -1,10 +1,12 @@
 import getTasks from '@wasp/queries/getTasks'
+import createTask from '@wasp/actions/createTask'
 import { useQuery } from '@wasp/queries'
 
 const MainPage = () => {
   const { data: tasks, isLoading, error } = useQuery(getTasks)
   return (
     <div>
+      <NewTaskForm/>
       {tasks && <TasksList tasks={tasks} />}
       {isLoading && 'Loading...'}
       {error && 'Error: '+error}
@@ -29,6 +31,26 @@ const TasksList = ({ tasks }) => {
         <Task task={task} key={idx} />
       ))}
     </div>
+  )
+}
+
+const NewTaskForm = () => {
+  const handleSubmit = async (event) => {
+    event.preventDefault()
+    try {
+      const target = event.target
+      const description = target.description.value
+      target.reset()
+      await createTask({description})
+    } catch (err) {
+      window.alert('Error: ' + err.message)
+    }
+  }
+  return (
+    <form onSubmit={handleSubmit}>
+      <input name="description" type="text" defaultValue="" />
+      <input type="submit" value="Create task"/>
+    </form>
   )
 }
 
