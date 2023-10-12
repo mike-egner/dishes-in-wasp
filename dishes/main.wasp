@@ -7,6 +7,13 @@ app dishes {
     ("@tailwindcss/forms", "^0.5.3"),
     ("@tailwindcss/typography", "^0.5.7")
   ],
+  auth: {
+    userEntity: User,
+    methods: {
+      usernameAndPassword: {}
+    },
+    onAuthFailedRedirectTo: "/login"
+  }
 }
 
 route RootRoute { path: "/", to: MainPage }
