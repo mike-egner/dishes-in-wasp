@@ -2,7 +2,11 @@ app dishes {
   wasp: {
     version: "^0.11.5"
   },
-  title: "dishes"
+  title: "dishes",
+  dependencies: [
+    ("@tailwindcss/forms", "^0.5.3"),
+    ("@tailwindcss/typography", "^0.5.7")
+  ],
 }
 
 route RootRoute { path: "/", to: MainPage }
