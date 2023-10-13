@@ -3,6 +3,8 @@ import createTask from '@wasp/actions/createTask'
 import updateTask from '@wasp/actions/updateTask'
 import { useQuery } from '@wasp/queries'
 
+import logout from '@wasp/auth/logout'
+
 const MainPage = () => {
   const { data: tasks, isLoading, error } = useQuery(getTasks)
   return (
@@ -11,6 +13,7 @@ const MainPage = () => {
       {tasks && <TasksList tasks={tasks} />}
       {isLoading && 'Loading...'}
       {error && 'Error: '+error}
+      <button onClick={logout}>Logout</button>
     </div>
   )
 }
