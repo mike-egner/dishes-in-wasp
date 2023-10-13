@@ -18,6 +18,7 @@ app dishes {
 
 route RootRoute { path: "/", to: MainPage }
 page MainPage {
+  authRequired: true,
   component: import Main from "@client/MainPage.jsx"
 }
 
