@@ -19,7 +19,7 @@ const navigation = [
 const userNavigation = [
   { name: 'Your Profile', onClick: {} },
   { name: 'Settings', onClick: {} },
-  { name: 'Sign out', onClick: {logout} },
+  { name: 'Sign out', onClick: logout },
 ]
 
 function classNames(...classes) {
@@ -239,7 +239,7 @@ const Task = ({ task }) => {
         </div>
         <div className="text-sm leading-6">
           <label htmlFor={String(task.id)} className="font-medium text-gray-900">{task.description}</label>
-          <p className="text-gray-500">Consider including a character limit so that someone who is included to verbosity doesn't create an unfavourable user experience.</p>
+          <p className="text-gray-500">{task.explanation}</p>
         </div>
       </div>
 
