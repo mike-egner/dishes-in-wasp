@@ -5,7 +5,9 @@ app dishes {
   title: "dishes",
   dependencies: [
     ("@tailwindcss/forms", "^0.5.3"),
-    ("@tailwindcss/typography", "^0.5.7")
+    ("@tailwindcss/typography", "^0.5.7"),
+    ("@headlessui/react", "^1.7.17"),
+    ("@heroicons/react", "^2.0.18")
   ],
   auth: {
     userEntity: User,
