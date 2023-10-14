@@ -48,8 +48,9 @@ const MainPage = ({ user }) => {
                   <div className="hidden md:block">
                     <div className="ml-10 flex items-baseline space-x-4">
                       {navigation.map((item) => (
-                        <p
+                        <a
                           key={item.name}
+                          href=""
                           onClick={item.onClick}
                           className={classNames(
                             item.current
@@ -60,7 +61,7 @@ const MainPage = ({ user }) => {
                           aria-current={ item.current ? 'page' : undefined }
                         >
                           {item.name}
-                        </p>
+                        </a>
                       ))}
                     </div>
                   </div>
@@ -98,7 +99,8 @@ const MainPage = ({ user }) => {
                             {userNavigation.map((item) => (
                               <Menu.Item key={item.name}>
                                 {({ active }) => (
-                                  <p
+                                  <a
+                                    href=""
                                     onClick={item.onClick}
                                     className={classNames(
                                       active ? 'bg-gray-100' : '',
@@ -106,7 +108,7 @@ const MainPage = ({ user }) => {
                                     )}
                                   >
                                     {item.name}
-                                  </p>
+                                  </a>
                                 )}
                               </Menu.Item>
                             ))}
@@ -137,7 +139,8 @@ const MainPage = ({ user }) => {
                     <Disclosure.Button
                       key={item.name}
                       as="a"
-                      href={item.href}
+                      href="#"
+                      onClick={item.onClick}
                       className={classNames(
                         item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                         'block rounded-md px-3 py-2 text-base font-medium'
@@ -171,7 +174,8 @@ const MainPage = ({ user }) => {
                       <Disclosure.Button
                         key={item.name}
                         as="a"
-                        href={item.href}
+                        href=""
+                        onClick={item.onClick}
                         className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
                       >
                         {item.name}
