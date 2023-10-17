@@ -1,6 +1,7 @@
 import getTasks from '@wasp/queries/getTasks'
 import createTask from '@wasp/actions/createTask'
 import updateTask from '@wasp/actions/updateTask'
+import deleteTask from '@wasp/actions/deleteTask'
 import { useQuery } from '@wasp/queries'
 import logout from '@wasp/auth/logout'
 import './Main.css'
@@ -223,6 +224,16 @@ const Task = ({ task }) => {
     }
   }
 
+  const handleDelete = async (event) => {
+    try {
+      await deleteTask({
+        id: task.id,
+      })
+    } catch (error) {
+      window.alert("Error while deleting task: " + error.message)
+    }
+  }
+
   return (
     <li className="flex items-center justify-between py-4 pl-4 pr-5 text-sm leading-6">
       <div className="flex w-0 flex-1 items-center">
@@ -233,7 +244,7 @@ const Task = ({ task }) => {
         </div>
       </div>
       <div className="ml-4 flex-shrink-0">
-        <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
+        <a href="" onClick={handleDelete} className="font-medium text-indigo-600 hover:text-indigo-500">
           Download
         </a>
       </div>

@@ -21,3 +21,10 @@ export const updateTask = async (args, context) => {
         data: { isDone: args.isDone },
     })
 }
+
+export const deleteTask = async (args, context) => {
+    if (!context.user) {
+        throw new HttpError(401)
+    }
+    return context.entities.Task.delete({ where: { id: args.id } })
+}
