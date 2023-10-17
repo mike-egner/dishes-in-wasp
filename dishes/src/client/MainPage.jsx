@@ -196,22 +196,15 @@ const MainPage = ({ user }) => {
       </header>
       <main>
         <div className="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
-          <NewTaskForm/>
-          
-          <fieldset className="my-6">
-            <legend className="text-sm font-semibold leading-6 text-gray-900">Current tasks:</legend>
-            <div className="mt-2 px-2">
-              {tasks && <TasksList tasks={tasks} />}
-            </div>
-          </fieldset>
-
+          <div className="px-4 sm:px-0">
+            <h3 className="text-base font-semibold leading-7 text-gray-900">Current tasks</h3>
+            <p className="mt-1 max-w-2xl text-sm leading-6 text-gray-500">Mark done or delete.</p>
+          </div>
           {isLoading && 'Loading...'}
           {error && 'Error: '+error}
-
-          <button className="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50" onClick={logout}>Logout</button>
+          <TasksList tasks={tasks} />
         </div>
       </main>
-      
       
     </div>
   )
@@ -231,23 +224,20 @@ const Task = ({ task }) => {
   }
 
   return (
-    <div>
-      {/* 
-      <input type="checkbox" id={String(task.id)} checked={task.isDone} onChange={handleIsDoneChange} />
-      {task.description}
-      */}
-
-      <div className="relative flex gap-x-3">
-        <div className="flex h-6 items-center">
-          <input type="checkbox" id={String(task.id)} checked={task.isDone} onChange={handleIsDoneChange} name={String(task.id)} className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600" />
-        </div>
-        <div className="text-sm leading-6">
-          <label htmlFor={String(task.id)} className="font-medium text-gray-900">{task.description}</label>
-          <p className="text-gray-500">{task.explanation}</p>
+    <li className="flex items-center justify-between py-4 pl-4 pr-5 text-sm leading-6">
+      <div className="flex w-0 flex-1 items-center">
+        <input type="checkbox" id={String(task.id)} checked={task.isDone} onChange={handleIsDoneChange} name={String(task.id)} className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600" />
+        <div className="ml-4 flex min-w-0 flex-1 gap-2">
+        <label htmlFor={String(task.id)} className="font-medium text-gray-900">{task.description}</label>
+          <span className="flex-shrink-0 text-gray-400 truncate">{task.explanation}</span>
         </div>
       </div>
-
-    </div>
+      <div className="ml-4 flex-shrink-0">
+        <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
+          Download
+        </a>
+      </div>
+    </li>
   )
 
 }
@@ -255,11 +245,20 @@ const Task = ({ task }) => {
 const TasksList = ({ tasks }) => {
   if (!tasks?.length) return <div>No tasks.</div>
   return (
-    <div>
-      {tasks.map((task, idx) => (
-        <Task task={task} key={idx} />
-      ))}
-    </div>
+      <div className="mt-2 border-t border-gray-100">
+        <div className="divide-y divide-gray-100">
+          <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+            <div className="mt-2 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+              <ul role="list" className="divide-y divide-gray-100 rounded-md border border-gray-200">
+                {tasks.map((task, idx) => (
+                  <Task task={task} key={idx} />
+                ))}
+              </ul>
+            </div>
+            <NewTaskForm />
+          </div>
+        </div>
+      </div>
   )
 }
 
