@@ -7,7 +7,7 @@ import logout from '@wasp/auth/logout'
 import './Main.css'
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { Bars3Icon, BellIcon, XMarkIcon, TrashIcon } from '@heroicons/react/24/outline'
 
 const navigation = [
   { name: 'Tasks', href: '#', current: true },
@@ -239,13 +239,13 @@ const Task = ({ task }) => {
       <div className="flex w-0 flex-1 items-center">
         <input type="checkbox" id={String(task.id)} checked={task.isDone} onChange={handleIsDoneChange} name={String(task.id)} className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600" />
         <div className="ml-4 flex min-w-0 flex-1 gap-2">
-        <label htmlFor={String(task.id)} className="font-medium text-gray-900">{task.description}</label>
-          <span className="flex-shrink-0 text-gray-400 truncate">{task.explanation}</span>
+          <label htmlFor={String(task.id)} className="font-medium text-gray-900">{task.description}</label>
+          <span className="text-gray-400 max-w-full truncate">{task.explanation}</span>
         </div>
       </div>
       <div className="ml-4 flex-shrink-0">
         <a href="" onClick={handleDelete} className="font-medium text-indigo-600 hover:text-indigo-500">
-          Download
+          <TrashIcon className="h-5 w-5 flex-shrink-0 text-gray-400" aria-hidden="true" />
         </a>
       </div>
     </li>
