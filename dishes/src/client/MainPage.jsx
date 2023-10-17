@@ -279,8 +279,9 @@ const NewTaskForm = () => {
     try {
       const target = event.target
       const description = target.description.value
+      const explanation = target.explanation.value
       target.reset()
-      await createTask({description})
+      await createTask({description, explanation})
     } catch (err) {
       window.alert('Error: ' + err.message)
     }
@@ -289,10 +290,14 @@ const NewTaskForm = () => {
     <div className="w-full max-w-xs">
       <form onSubmit={handleSubmit} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" >
         <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="newtask">
-            Add a new task:
+          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="taskname">
+            Task name
           </label>
-          <input autoFocus id="newtask" name="description" type="text" defaultValue="" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+          <input autoFocus id="taskname" name="description" type="text" defaultValue="" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="taskexplanation">
+            Explanation
+          </label>
+          <input id="taskexplanation" name="explanation" type="text" defaultValue="" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
         </div>
         <input className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit" value="Create task" />
       </form>
